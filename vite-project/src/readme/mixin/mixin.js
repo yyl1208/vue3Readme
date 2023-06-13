@@ -1,4 +1,3 @@
-<script>
 export default {
   setup() {},
   data() {
@@ -18,4 +17,3 @@ export default {
     },
   },
 };
-</script>

@@ -1,12 +1,22 @@
 <template>
   <div></div>
 
-  <span>展示文字</span>
-
   <div>
-    <a-button @click="changeShowFun">点击展示</a-button>
+    <div>obj2 : {{ JSON.stringify(obj2) }} }}</div>
+
+    <div class="mb20px"><span class="mr10px">原始obj2: </span> <a-input v-model="obj2.a"></a-input></div>
   </div>
 
+  <div class="mt20px">
+    <span v-if="visible"
+      >展示文字:
+      <a-input v-model="text"></a-input>
+    </span>
+    <div>
+      <a-button @click="changeShowFun">控制展示文字</a-button>
+    </div>
+
+  </div>
 </template>
 
 <script setup>
@@ -16,9 +26,15 @@ const props = defineProps(['changeType']);
 const emits = defineEmits(['']);
 
 // ref 绑定
-const visible = ref(false);
+const visible = ref(true);
+
+const text = ref('');
 
 const obj = ref({});
+
+const array = ref([]);
+
+const obj2 = reactive({ a: 1, b: 2 });
 
 const changeShowFun = () => {
   // 修改 ref 加上 .value

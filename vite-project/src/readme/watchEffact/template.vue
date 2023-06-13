@@ -27,7 +27,7 @@ const detail = ref({});
 
 const consoleList = ref([]);
 
-//
+// 触发请求 并保证最新请求数据
 watchEffect(async (onInvalidate) => {
   console.log('触发请求', consoleList.value.push('触发请求!!!!' + id.value));
 

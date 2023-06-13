@@ -1,29 +1,40 @@
 # Vue 3 + Vite 
 
 
-初始脚手架 
+## 学习Vue3 和 Vue2 的写法差异
 
-```
->>  npm create vite@latest 
-```
+主要一下几点功能
 
-```
-Project name: » vite-project
+Setup 语法糖
+双向绑定变化
+传参变化
+计算属性
+生命周期变化
+   
+watch事件
 
-√ Project name: ... test
-? Select a framework: » - Use arrow-keys. Return to submit.
-    Vanilla
->   Vue
-    React
-    Preact
-    Lit
-    Svelte
-```
+watchEffact
 
-```
-cd vite-project
+Ref的使用
 
-npm install 
-```
+组件多个root
+
+定义多个v-model（类似 .sync）
+
+this.$ 挂载修改
+（例如this.$message）
 
 
+Mixin的用法
+不能在语法糖里写
+
+
+Provide / inject 的使用
+
+指令的用法
+
+动态导入异步组件
+
+toRef / toRefs 的使用场景
+
+弃用的功能 

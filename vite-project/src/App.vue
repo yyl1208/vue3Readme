@@ -46,6 +46,11 @@ const menuList = [
     component: defineAsyncComponent(() => import('@/readme/provide&inject/index.vue')),
     index: '5',
   },
+  {
+    name: 'mixin和公共函数',
+    component: defineAsyncComponent(() => import('@/readme/mixin/index.vue')),
+    index: '6',
+  },
 ];
 
 const getComponent = computed(() => {
@@ -72,7 +77,6 @@ const getComponent = computed(() => {
         <component :is="getComponent"></component>
       </div>
     </div>
-    
   </div>
   <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
