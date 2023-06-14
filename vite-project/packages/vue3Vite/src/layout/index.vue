@@ -37,7 +37,7 @@ const getComponent = computed(() => {
 
 <template>
   <div class="w-100vw h-100vh flex flex-1 flex-col overflow-hidden">
-    <div class="h-40px flex flex-center bg-blue">child Vue3的写法差异</div>
+    <div class="h-40px flex flex-center bg-blue">child</div>
 
     <div class="flex flex-1 overflow-auto">
       <div class="w-300px">
