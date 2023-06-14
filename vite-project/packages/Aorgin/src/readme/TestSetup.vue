@@ -33,7 +33,7 @@ const obj = ref({});
 
 const array = ref([]);
 
-const obj2 = reactive({ a: 1, b: 2 });
+let obj2 = reactive({ a: 1, b: 2 });
 
 const changeShowFun = () => {
   // 修改 ref 加上 .value

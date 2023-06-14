@@ -1,56 +1,67 @@
 <script setup>
 import { defineAsyncComponent } from 'vue';
 import TestSetup from '@/readme/TestSetup.vue';
-import TestWatchEffact from '@/readme/watchEffact/template.vue';
+import TestWatchEffect from '@/readme/watchEffect/template.vue';
 import TestRef from '@/readme/ref/index.vue';
 import TestModel from '@/readme/ref/index.vue';
 import { computed } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 
 // import watchEffect from '@/readme/emit/parent.vue';
+const router = useRouter();
+const route = useRoute();
 
 const menuSelect = ref('0');
 
 const clickMenu = (item) => {
+  console.log('item', item);
+
   menuSelect.value = item;
+  console.log('router', router, route);
+  router.push('/' + item.path);
 };
 
 const menuList = [
   {
     name: 'Setup语法糖',
-    component: defineAsyncComponent(() => import('@/readme/TestSetup.vue')),
-    index: '0',
+    path: 'setup',
   },
   {
     name: '传参',
-    component: defineAsyncComponent(() => import('@/readme/emit/parent.vue')),
-    index: '1',
-    // component: () =>import("@views/admin/alarmCenter/index"),
+    path: 'props',
   },
   {
     name: 'toRefs&toRef',
-    component: defineAsyncComponent(() => import('@/readme/ref/index.vue')),
-    index: '2',
+    path: 'ref',
+    // component: defineAsyncComponent(() => import('@/readme/ref/index.vue')),
   },
   {
     name: 'watchEffect',
-    component: defineAsyncComponent(() => import('@/readme/watchEffact/template.vue')),
-    index: '3',
+    path: 'watchEffect',
+    // component: defineAsyncComponent(() => import('@/readme/watchEffact/template.vue')),
   },
   {
     name: 'v-model:',
-    component: defineAsyncComponent(() => import('@/readme/vmodel/index.vue')),
-    index: '4',
+    path: 'vmodel',
+    // component: defineAsyncComponent(() => import('@/readme/vmodel/index.vue')),
+    // index: '4',
   },
   {
     name: 'provide&inject',
+    path: 'provide',
     component: defineAsyncComponent(() => import('@/readme/provide&inject/index.vue')),
     index: '5',
   },
   {
     name: 'mixin和公共函数',
-    component: defineAsyncComponent(() => import('@/readme/mixin/index.vue')),
-    index: '6',
+    path: 'mixin',
+    // component: defineAsyncComponent(() => import('@/readme/mixin/index.vue')),
+    // index: '6',
   },
+  {
+    name: '无界微前端',
+    path: 'childOne',
+  }
 ];
 
 const getComponent = computed(() => {
@@ -60,25 +71,21 @@ const getComponent = computed(() => {
 </script>
 
 <template>
-  <div class="w-100vw h-100vh flex flex-1 flex-col">
+  <div class="w-100vw h-100vh flex flex-1 flex-col overflow-hidden">
     <div class="h-40px flex flex-center bg-blue">Vue3的写法差异</div>
-
-    <div class="flex flex-1">
+    <div class="flex flex-1 overflow-hidden">
       <div class="w-300px">
         <a-menu :default-selected-keys="['0']" @menu-item-click="clickMenu">
-          <!-- <template #title>Navigation 1</template> -->
-          <a-menu-item v-for="(item, i) in menuList" :key="item.index">{{ item.name }}</a-menu-item>
-          <!-- <a-menu-item key="1">Setup语法糖</a-menu-item>
-          <a-menu-item key="2">传参</a-menu-item>
-          <a-menu-item key="3">toRefs&toRef</a-menu-item>-->
+          <a-menu-item v-for="(item, i) in menuList" :key="item">{{ item.name }}</a-menu-item>
+          <!-- <a-menu-item key="1">Setup语法糖</a-menu-item>-->
         </a-menu>
       </div>
       <div class="flex-1">
-        <component :is="getComponent"></component>
+        <router-view />
+        <!-- <component :is="getComponent"></component> -->
       </div>
     </div>
   </div>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
 </template>
 
 <style scoped>

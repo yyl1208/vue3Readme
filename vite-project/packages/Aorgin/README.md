@@ -17,7 +17,7 @@ Setup 语法糖
    
 watch事件
 
-watchEffect
+watchEffact
 
 Ref的使用
 
