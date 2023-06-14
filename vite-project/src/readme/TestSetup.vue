@@ -12,10 +12,9 @@
       >展示文字:
       <a-input v-model="text"></a-input>
     </span>
-    <div>
+    <div class="mt10px">
       <a-button @click="changeShowFun">控制展示文字</a-button>
     </div>
-
   </div>
 </template>
 
@@ -39,5 +38,11 @@ const obj2 = reactive({ a: 1, b: 2 });
 const changeShowFun = () => {
   // 修改 ref 加上 .value
   visible.value = !visible.value;
+
+  if (visible.value) obj2.a = 2;
+  else {
+    obj2 = { a: 1111, b: 1111 };
+    // obj2 = Object.assign(obj2, { a: 1111, b: 1111 });
+  }
 };
 </script>

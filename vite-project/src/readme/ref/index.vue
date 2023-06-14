@@ -7,6 +7,10 @@
 
       <div class="mb20px"><span class="mr10px">原始obj: </span> <a-input v-model="obj.a"></a-input></div>
     </div>
+
+    
+
+
     <div class="mb20px"><span class="mr10px">ref: </span> <a-input v-model="action"></a-input></div>
 
     <div class="mb20px"><span class="mr10px">ref2: </span> <a-input v-model="action2"></a-input></div>
