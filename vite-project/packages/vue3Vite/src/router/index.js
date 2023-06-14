@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
-// import Layout from '@/layout/index.vue';
+import Layout from '@/layout/index.vue';
 
 const basicRoutes = [
   { path: '/', redirect: '/chileVite' },
@@ -43,8 +43,8 @@ const basicRoutes = [
         component: () => import('@/readme/provide&inject/index.vue'),
       },
       {
-        path: '/mixin',
-        name: 'mixin',
+        path: '/mixin2',
+        name: 'mixin2',
         component: () => import('@/readme/mixin/index.vue'),
       },
     ],

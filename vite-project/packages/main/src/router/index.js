@@ -47,16 +47,14 @@ const basicRoutes = [
         name: 'mixin',
         component: () => import('@/readme/mixin/index.vue'),
       },
-
-
+      {
+        path: '/childOne',
+        name: 'childOne',
+        component: () => import('@/subViews/childOne.vue'),
+      },
     ],
   },
   // 子应用 /childOne
-  {
-    path: '/chileOne',
-    name: 'mixin',
-    component: () => import('@/readme/mixin/index.vue'),
-  },
 ];
 
 // app router
@@ -71,3 +69,5 @@ export const router = createRouter({
 export function setupRouter(app) {
   app.use(router);
 }
+
+export default router;

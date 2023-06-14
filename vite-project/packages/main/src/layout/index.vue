@@ -58,6 +58,10 @@ const menuList = [
     // component: defineAsyncComponent(() => import('@/readme/mixin/index.vue')),
     // index: '6',
   },
+  {
+    name: '无界微前端',
+    path: 'childOne',
+  }
 ];
 
 const getComponent = computed(() => {
@@ -69,8 +73,7 @@ const getComponent = computed(() => {
 <template>
   <div class="w-100vw h-100vh flex flex-1 flex-col overflow-hidden">
     <div class="h-40px flex flex-center bg-blue">Vue3的写法差异</div>
-
-    <div class="flex flex-1 overflow-auto">
+    <div class="flex flex-1 overflow-hidden">
       <div class="w-300px">
         <a-menu :default-selected-keys="['0']" @menu-item-click="clickMenu">
           <a-menu-item v-for="(item, i) in menuList" :key="item">{{ item.name }}</a-menu-item>

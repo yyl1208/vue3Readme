@@ -53,4 +53,10 @@ export default defineConfig({
       '@type': resolve(__dirname, './src/types'),
     },
   },
+  base: './',
+  server: {
+    cors: true,
+    host: '0.0.0.0',
+    port: 8000,
+  },
 });

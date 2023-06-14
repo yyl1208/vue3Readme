@@ -49,12 +49,11 @@ const menuList = [
   {
     name: 'provide&inject',
     path: 'provide',
-    component: defineAsyncComponent(() => import('@/readme/provide&inject/index.vue')),
-    index: '5',
+    // component: defineAsyncComponent(() => import('@/readme/provide&inject/index.vue')),
   },
   {
     name: 'mixin和公共函数',
-    path: 'mixin',
+    path: 'mixin2',
     // component: defineAsyncComponent(() => import('@/readme/mixin/index.vue')),
     // index: '6',
   },

@@ -56,6 +56,6 @@ export default defineConfig({
   server: {
     cors: true,
     host: true,
-    port: 6000,
+    port: 6001,
   },
 });

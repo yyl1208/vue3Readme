@@ -10,7 +10,7 @@
     "dev": " npm run start",
     "start": "npm-run-all --parallel start:*",
     "start:main": "cd packages/main && npm start",
-    "start:vue3Vite": "cd packages/vue3Vite && npm start",
+    "start:child1": "cd packages/vue3Vite && npm start",
     "build": "npm-run-all build:* && bash ./scripts/bundle.sh",
     "build:vue": "cd packages/vue && npm run build",
     "build:main": "cd packages/main && npm run build"

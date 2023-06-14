@@ -5,7 +5,7 @@ import App from './App.vue';
 import { setupRouter } from '@/router';
 import { setupStore } from '@/store';
 import { setupGlobDirectives } from '@/directives';
-import { setupWujie } from '@/plugins';
+import { setupWujie } from '@/plugins/wujie';
 
 import 'uno.css';
 
