@@ -1,9 +1,5 @@
 <script setup>
 import { defineAsyncComponent } from 'vue';
-import TestSetup from '@/readme/TestSetup.vue';
-import TestWatchEffact from '@/readme/watchEffact/template.vue';
-import TestRef from '@/readme/ref/index.vue';
-import TestModel from '@/readme/ref/index.vue';
 import { computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 
@@ -14,8 +10,6 @@ const route = useRoute();
 const menuSelect = ref('0');
 
 const clickMenu = (item) => {
-  console.log('item', item);
-
   menuSelect.value = item;
   console.log('router', router, route);
   router.push('/' + item.path);
@@ -23,44 +17,20 @@ const clickMenu = (item) => {
 
 const menuList = [
   {
-    name: 'Setup语法糖',
-    path: 'setup',
+    name: '首页',
+    path: 'home',
   },
   {
-    name: '传参',
-    path: 'props',
+    name: '路由',
+    path: 'route',
   },
   {
-    name: 'toRefs&toRef',
-    path: 'ref',
-    // component: defineAsyncComponent(() => import('@/readme/ref/index.vue')),
-  },
-  {
-    name: 'watchEffect',
-    path: 'watchEffect',
-    // component: defineAsyncComponent(() => import('@/readme/watchEffact/template.vue')),
-  },
-  {
-    name: 'v-model:',
-    path: 'vmodel',
-    // component: defineAsyncComponent(() => import('@/readme/vmodel/index.vue')),
-    // index: '4',
-  },
-  {
-    name: 'provide&inject',
-    path: 'provide',
-    // component: defineAsyncComponent(() => import('@/readme/provide&inject/index.vue')),
-  },
-  {
-    name: 'mixin和公共函数',
-    path: 'mixin2',
-    // component: defineAsyncComponent(() => import('@/readme/mixin/index.vue')),
-    // index: '6',
+    name: '通信',
+    path: 'childContact',
   },
 ];
 
 const getComponent = computed(() => {
-  console.log('menuSelect', menuSelect);
   return menuList[menuSelect.value].component;
 });
 </script>

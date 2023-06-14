@@ -10,50 +10,24 @@ const basicRoutes = [
     //   hidden: true,
     children: [
       {
-        name: 'setup',
-        path: '/setup',
+        name: 'home',
+        path: '/home',
         component: () => {
-          return import('@/readme/TestSetup.vue');
+          return import('@/pages/home.vue');
         },
       },
       {
-        name: 'props',
-        path: '/props',
-        component: () => import('@/readme/emit/parent.vue'),
+        name: 'childRoute',
+        path: '/route',
+        component: () => import('@/pages/testRoute.vue'),
         // component: () =>import("@views/admin/alarmCenter/index"),
       },
       {
-        path: '/ref',
-        name: 'ref',
-        component: () => import('@/readme/ref/index.vue'),
-      },
-      {
-        path: '/watchEffect',
-        name: 'watchEffect',
-        component: () => import('@/readme/watchEffact/template.vue'),
-      },
-      {
-        path: '/vmodel',
-        name: 'vmodel',
-        component: () => import('@/readme/vmodel/index.vue'),
-      },
-      {
-        path: '/provide',
-        name: 'provide',
-        component: () => import('@/readme/provide&inject/index.vue'),
-      },
-      {
-        path: '/mixin2',
-        name: 'mixin2',
-        component: () => import('@/readme/mixin/index.vue'),
+        name: 'childContact',
+        path: '/childContact',
+        component: () => import('@/pages/contact.vue'),
       },
     ],
-  },
-  // 子应用 /childOne
-  {
-    path: '/chileOne',
-    name: 'mixin',
-    component: () => import('@/readme/mixin/index.vue'),
   },
 ];
 
