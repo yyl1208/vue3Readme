@@ -1,7 +1,7 @@
 <script setup>
 import { defineAsyncComponent } from 'vue';
 import TestSetup from '@/readme/TestSetup.vue';
-import TestWatchEffact from '@/readme/watchEffact/template.vue';
+import TestWatchEffect from '@/readme/watchEffect/template.vue';
 import TestRef from '@/readme/ref/index.vue';
 import TestModel from '@/readme/ref/index.vue';
 import { computed } from 'vue';

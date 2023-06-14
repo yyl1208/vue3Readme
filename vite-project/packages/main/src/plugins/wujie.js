@@ -1,13 +1,12 @@
 import WujieVue from 'wujie-vue3';
 import router from '@/router';
-import { useRouter } from 'vue-router';
 import hostMap from '.././hostMap';
 const { bus, setupApp, preloadApp, destroyApp } = WujieVue;
 import credentialsFetch from './fetch';
 import lifecycles from './lifecycle';
 
 const isProduction = process.env.NODE_ENV === 'production';
-// const router = useRouter();
+
 // 初始化无界
 export function setupWujie(app) {
   app.use(WujieVue);

@@ -30,7 +30,7 @@ const basicRoutes = [
       {
         path: '/watchEffect',
         name: 'watchEffect',
-        component: () => import('@/readme/watchEffact/template.vue'),
+        component: () => import('@/readme/watchEffect/template.vue'),
       },
       {
         path: '/vmodel',
@@ -47,8 +47,6 @@ const basicRoutes = [
         name: 'mixin',
         component: () => import('@/readme/mixin/index.vue'),
       },
-
-
     ],
   },
   // 子应用 /childOne
