@@ -31,11 +31,11 @@ const basicRoutes = [
   },
 ];
 
-let history = createWebHistory(window.__MICRO_APP_BASE_ROUTE__ || '/microChild');
+let history = createWebHashHistory(window.__MICRO_APP_BASE_ROUTE__ || '/microChild');
 
 // history =
 // app router
-const router = createRouter({
+let router = createRouter({
   //   history: createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
   history: history,
   routes: basicRoutes,
@@ -47,6 +47,14 @@ export function setupRouter(app) {
   app.use(router);
 }
 
-export { history };
+function destoryRoute() {
+  // app.use(router);
+
+  history?.destroy();
+  history = null;
+  router = null;
+}
+
+export { history, destoryRoute };
 
 export default router;

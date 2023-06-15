@@ -8,7 +8,10 @@ import Unocss from 'unocss/vite';
 import { presetAttributify, presetIcons, presetUno, transformerDirectives, transformerVariantGroup } from 'unocss';
 import { writeFileSync } from 'fs';
 
-const pathSrc = path.resolve(__dirname, 'src');
+function pathResolve(dir) {
+  return resolve(process.cwd(), '.', dir);
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -72,12 +75,13 @@ export default defineConfig({
     })(),
   ],
   resolve: {
-    alias: {
-      /** @ 符号指向 src 目录 */
-      '~/': `${pathSrc}/`,
-      '@': `${pathSrc}`,
-      '@type': resolve(__dirname, './src/types'),
-    },
+    alias: [
+      // /@/xxxx => src/xxxx
+      {
+        find: /@\//,
+        replacement: pathResolve('src') + '/',
+      },
+    ],
   },
   base: '/microChild/',
   server: {
