@@ -59,9 +59,9 @@ const menuList = [
     // index: '6',
   },
   {
-    name: '无界微前端',
+    name: 'MicroApp微前端',
     path: 'childOne',
-  }
+  },
 ];
 
 const getComponent = computed(() => {

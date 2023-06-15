@@ -48,7 +48,7 @@ const basicRoutes = [
         component: () => import('@/readme/mixin/index.vue'),
       },
       {
-        path: '/childOne',
+        path: '/childOne/:path*',
         name: 'childOne',
         component: () => import('@/subViews/childOne.vue'),
       },

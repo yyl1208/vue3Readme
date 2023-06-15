@@ -1,18 +1,66 @@
 <template>
-  <!--单例模式，name相同则复用一个无界实例，改变url则子应用重新渲染实例到对应路由 -->
-  <WujieVue width="100%" height="100%" name="vite" :url="viteUrl" :sync="true"></WujieVue>
+  <div>
+    <micro-app
+      name="microChild"
+      :url="url"
+      inline
+      disablesandbox
+      :data="microAppData"
+      @created="handleCreate"
+      @beforemount="handleBeforeMount"
+      @mounted="handleMount"
+      @unmount="handleUnmount"
+      @error="handleError"
+      @datachange="handleDataChange"
+    ></micro-app>
+  </div>
 </template>
 
-<script>
-import hostMap from '../hostMap';
+<script lang="ts">
+import { EventCenterForMicroApp } from '@micro-zoe/micro-app';
+
+// @ts-ignore 因为vite子应用关闭了沙箱，我们需要为子应用appname-vite创建EventCenterForMicroApp对象来实现数据通信
+window.eventCenterForAppNameVite = new EventCenterForMicroApp('microChild');
 
 export default {
+  name: 'vite',
   data() {
     return {
-      viteUrl: hostMap('//localhost:6001/'),
+      url: `http://localhost:6001/microChild/`,
+      microAppData: { msg: '来自基座的数据' },
     };
+  },
+  methods: {
+    handleCreate(): void {
+      console.log('child-vite 创建了');
+    },
+
+    handleBeforeMount(): void {
+      console.log('child-vite 即将被渲染');
+    },
+
+    handleMount(): void {
+      console.log('child-vite 已经渲染完成');
+
+      setTimeout(() => {
+        // @ts-ignore
+        this.microAppData = { msg: '来自基座的新数据' };
+      }, 2000);
+    },
+
+    handleUnmount(): void {
+      console.log('child-vite 卸载了');
+    },
+
+    handleError(): void {
+      console.log('child-vite 加载出错了');
+    },
+
+    handleDataChange(e: CustomEvent): void {
+      console.log('来自子应用 child-vite 的数据:', e.detail.data);
+    },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style></style>

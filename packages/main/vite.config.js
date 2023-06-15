@@ -11,7 +11,13 @@ const pathSrc = path.resolve(__dirname, 'src');
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => /^micro-app/.test(tag),
+        },
+      },
+    }),
     AutoImport({
       // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
       imports: ['vue'],

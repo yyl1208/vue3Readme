@@ -400,6 +400,11 @@
     write-pkg "4.0.0"
     yargs "16.2.0"
 
+"@micro-zoe/micro-app@^0.8.11":
+  version "0.8.11"
+  resolved "https://registry.npmjs.org/@micro-zoe/micro-app/-/micro-app-0.8.11.tgz"
+  integrity sha512-4NapVlAomUagOcpHQlcPgTHlVZgeb/OSSuS6lQWV9uOEhsKqbE6j3KBWb3RPN2olfvrbFXGaUKyA0pup92ja9g==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.npmjs.org/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz"
@@ -12366,7 +12371,7 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"vite-main-project@file:/Users/youngke/study/vue3Tec/vueTecTest/vue3-project/Vue3Read/vue3Readme/vite-project/packages/main":
+"vite-main-project@file:/Users/youngke/study/vue3Tec/vueTecTest/vue3-project/MicroService/MicroApp/project/vue3Readme/packages/main":
   version "0.0.0"
   resolved "file:packages/main"
   dependencies:
@@ -12375,7 +12380,7 @@ verror@1.10.0:
     vue-router "^4.2.2"
     wujie-vue3 "^1.0.17"
 
-"vite-project@file:/Users/youngke/study/vue3Tec/vueTecTest/vue3-project/Vue3Read/vue3Readme/vite-project/packages/Aorgin":
+"vite-project@file:/Users/youngke/study/vue3Tec/vueTecTest/vue3-project/MicroService/MicroApp/project/vue3Readme/packages/Aorgin":
   version "0.0.0"
   resolved "file:packages/Aorgin"
   dependencies:
@@ -12394,7 +12399,7 @@ verror@1.10.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-"vite3-child-project@file:/Users/youngke/study/vue3Tec/vueTecTest/vue3-project/Vue3Read/vue3Readme/vite-project/packages/vue3Vite":
+"vite3-child-project@file:/Users/youngke/study/vue3Tec/vueTecTest/vue3-project/MicroService/MicroApp/project/vue3Readme/packages/vue3Vite":
   version "0.0.0"
   resolved "file:packages/vue3Vite"
   dependencies:

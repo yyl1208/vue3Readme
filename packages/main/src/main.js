@@ -5,7 +5,7 @@ import App from './App.vue';
 import { setupRouter } from '@/router';
 import { setupStore } from '@/store';
 import { setupGlobDirectives } from '@/directives';
-import { setupWujie } from '@/plugins/wujie';
+import '@/plugins/micro';
 
 import 'uno.css';
 
@@ -37,7 +37,7 @@ async function bootstrap() {
   setupGlobDirectives(app);
 
   // 注册无界
-  setupWujie(app);
+  // setupWujie(app);
 
   app.mount('#app');
 }

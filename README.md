@@ -1,8 +1,7 @@
-# Vue 3 + Vite + wujie + lerna 
+# Vue 3 + Vite + micro-app + lerna 
 
 
-
-学习脚手架
+学习Micro-app脚手架
 
 
 ## 学习Vue3 和 Vue2 的写法差异
