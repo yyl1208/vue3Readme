@@ -48,9 +48,21 @@ const basicRoutes = [
         component: () => import('@/readme/mixin/index.vue'),
       },
       {
-        path: '/childOne/:path*',
+        path: '/microChild:path*',
         name: 'childOne',
         component: () => import('@/subViews/childOne.vue'),
+      },
+      {
+        path: '/app-vue2/:page*',
+        name: 'app-vue2',
+        component: () => import('@/subViews/vue2.vue'),
+      },
+      {
+        // 因为主应用为history路由，appname-vite子应用是hash路由，这里配置略微不同
+        // 已解决带参数时页面丢失的问题
+        path: '/app-vite:page*',
+        name: 'vite',
+        component: () => import('@/subViews/vite.vue'),
       },
     ],
   },
@@ -62,7 +74,6 @@ export const router = createRouter({
   //   history: createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
   history: createWebHistory(),
   routes: basicRoutes,
-  strict: true,
 });
 
 // config router

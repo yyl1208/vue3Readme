@@ -1,41 +1,33 @@
-import { createApp } from 'vue';
-import './style.css';
+import { createApp, App as AppInstance } from 'vue';
+import { createRouter, createWebHashHistory, RouterHistory, Router } from 'vue-router';
 import App from './App.vue';
-import { createRouter, createWebHashHistory } from 'vue-router';
+import routes from './router';
 
-import { basicRoutes } from '@/router';
-import { setupStore } from '@/store';
-import { setupGlobDirectives } from '@/directives';
+declare global {
+  interface Window {
+    eventCenterForAppNameVite: any;
+    __MICRO_APP_NAME__: string;
+    __MICRO_APP_ENVIRONMENT__: string;
+    __MICRO_APP_BASE_APPLICATION__: string;
+  }
+}
 
-// import router, { history, destoryRoute } from '@/router';
-
-import 'uno.css';
-
-import DemoBlock from './components/DemoBlock.vue';
-import PreCode from './components/PreCode.vue';
-
-// 引入message 样式
-import '@arco-design/web-vue/dist/arco.css';
-
-import { Message } from '@arco-design/web-vue';
-
-import '@arco-design/web-vue/es/message/style/css.js'; //vite只能用 ant-design-vue/es 而非 ant-design-vue/lib
-
-export function handleMicroData(router) {
+// 与基座进行数据交互
+function handleMicroData(router: Router) {
   // eventCenterForAppNameVite 是基座添加到window的数据通信对象
   if (window.eventCenterForAppNameVite) {
     // 主动获取基座下发的数据
     console.log('child-vite getData:', window.eventCenterForAppNameVite.getData());
 
     // 监听基座下发的数据变化
-    window.eventCenterForAppNameVite.addDataListener((data) => {
+    window.eventCenterForAppNameVite.addDataListener((data: Record<string, unknown>) => {
       console.log('child-vite addDataListener:', data);
 
       if (data.path && typeof data.path === 'string') {
         data.path = data.path.replace(/^#/, '');
         // 当基座下发path时进行跳转
         if (data.path && data.path !== router.currentRoute.value.path) {
-          router.push(data.path);
+          router.push(data.path as string);
         }
       }
     });
@@ -52,7 +44,7 @@ export function handleMicroData(router) {
  * 相关issue：https://github.com/micro-zoe/micro-app/issues/155
  * 当前vue-router版本：4.0.12
  */
-function fixBugForVueRouter4(router) {
+function fixBugForVueRouter4(router: Router) {
   // 判断主应用是main-vue3或main-vite，因为这这两个主应用是 vue-router4
   if (window.location.href.includes('/main-vue3') || window.location.href.includes('/main-vite')) {
     /**
@@ -77,56 +69,70 @@ function fixBugForVueRouter4(router) {
   }
 }
 
-let app = null;
-let history = null;
-let router = null;
+// ----------分割线---默认模式------两种模式任选其一-----放开注释即可运行------- //
+// const router = createRouter({
+//   history: createWebHashHistory(),
+//   routes,
+// })
 
-async function mount() {
-  const app = createApp(App);
-  app.config.globalProperties.$message = Message;
+// const app = createApp(App)
+// app.use(router)
+// app.mount('#vite-app')
 
-  app.component('PreCode', PreCode);
-  app.component(DemoBlock.name, DemoBlock);
+// console.log('微应用child-vite渲染了')
 
-  // 注册路由
+// handleMicroData(router)
+
+// fixBugForVueRouter4(router)
+
+// // 监听卸载操作
+// window.addEventListener('unmount', function () {
+//   app.unmount()
+//   // 卸载所有数据监听函数
+//   window.eventCenterForAppNameVite?.clearDataListener()
+//   console.log('微应用child-vite卸载了')
+// })
+
+// ----------分割线---umd模式------两种模式任选其一-------------- //
+let app: AppInstance | null = null;
+let router: Router | null = null;
+let history: RouterHistory | null = null;
+// 将渲染操作放入 mount 函数
+function mount() {
   history = createWebHashHistory();
   router = createRouter({
-    history: history,
-    routes: basicRoutes,
-    strict: true,
+    history,
+    routes,
   });
 
+  app = createApp(App);
   app.use(router);
+  app.mount('#vite-app');
 
-  // 注册pinia
-  setupStore(app);
-  // 注册全局指令
-  setupGlobDirectives(app);
-  app.mount('#child-app');
+  console.log('微应用child-vite渲染了');
+
   handleMicroData(router);
+
+  // fixBugForVueRouter4(router)
 }
 
 // 将卸载操作放入 unmount 函数
 function unmount() {
   app?.unmount();
-  // history?.destroy();
+  history?.destroy();
   // 卸载所有数据监听函数
   window.eventCenterForAppNameVite?.clearDataListener();
   app = null;
-  // router = null;
-  // history = null;
-  destoryRoute();
-
+  router = null;
+  history = null;
   console.log('微应用child-vite卸载了');
 }
 
 // 微前端环境下，注册mount和unmount方法
 if (window.__MICRO_APP_BASE_APPLICATION__) {
   // @ts-ignore
-  window['micro-app-microChild'] = { mount, unmount };
+  window['micro-app-appname-vite'] = { mount, unmount };
 } else {
   // 非微前端环境直接渲染
   mount();
 }
-
-// setupMicro(bootstrap);

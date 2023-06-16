@@ -1,11 +1,11 @@
 <template>
   <div>
     <micro-app
-      name="microChild"
+      name="appname-vite"
       :url="url"
       inline
       disablesandbox
-      baseroute="/microChild"
+      baseroute="/app-vite"
       :data="microAppData"
       @created="handleCreate"
       @beforemount="handleBeforeMount"
@@ -19,15 +19,16 @@
 
 <script lang="ts">
 import { EventCenterForMicroApp } from '@micro-zoe/micro-app';
-
+// import config from '../config'
+//
 // @ts-ignore 因为vite子应用关闭了沙箱，我们需要为子应用appname-vite创建EventCenterForMicroApp对象来实现数据通信
-window.eventCenterForAppNameVite = new EventCenterForMicroApp('microChild');
+window.eventCenterForAppNameVite = new EventCenterForMicroApp('appname-vite');
 
 export default {
-  name: 'microChild',
+  name: 'vite',
   data() {
     return {
-      url: `http://localhost:6001/microChild/`,
+      url: `${'http://localhost:4007'}/child/vite/`,
       microAppData: { msg: '来自基座的数据' },
     };
   },

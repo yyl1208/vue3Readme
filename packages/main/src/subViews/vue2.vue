@@ -1,11 +1,8 @@
 <template>
   <div>
     <micro-app
-      name="microChild"
+      name="appname-vue2"
       :url="url"
-      inline
-      disablesandbox
-      baseroute="/microChild"
       :data="microAppData"
       @created="handleCreate"
       @beforemount="handleBeforeMount"
@@ -18,30 +15,27 @@
 </template>
 
 <script lang="ts">
-import { EventCenterForMicroApp } from '@micro-zoe/micro-app';
-
-// @ts-ignore 因为vite子应用关闭了沙箱，我们需要为子应用appname-vite创建EventCenterForMicroApp对象来实现数据通信
-window.eventCenterForAppNameVite = new EventCenterForMicroApp('microChild');
+// import config from '../config'
 
 export default {
-  name: 'microChild',
+  name: 'vue2',
   data() {
     return {
-      url: `http://localhost:6001/microChild/`,
+      url: `${'http://localhost:4008'}/child/vue2/`,
       microAppData: { msg: '来自基座的数据' },
     };
   },
   methods: {
     handleCreate(): void {
-      console.log('child-vite 创建了');
+      console.log('child-vue2 创建了');
     },
 
     handleBeforeMount(): void {
-      console.log('child-vite 即将被渲染');
+      console.log('child-vue2 即将被渲染');
     },
 
     handleMount(): void {
-      console.log('child-vite 已经渲染完成');
+      console.log('child-vue2 已经渲染完成');
 
       setTimeout(() => {
         // @ts-ignore
@@ -50,15 +44,15 @@ export default {
     },
 
     handleUnmount(): void {
-      console.log('child-vite 卸载了');
+      console.log('child-vue2 卸载了');
     },
 
     handleError(): void {
-      console.log('child-vite 加载出错了');
+      console.log('child-vue2 加载出错了');
     },
 
     handleDataChange(e: CustomEvent): void {
-      console.log('来自子应用 child-vite 的数据:', e.detail.data);
+      console.log('来自子应用 child-vue2 的数据:', e.detail.data);
     },
   },
 };

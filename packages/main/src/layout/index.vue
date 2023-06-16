@@ -60,7 +60,15 @@ const menuList = [
   },
   {
     name: 'MicroApp微前端',
-    path: 'childOne',
+    path: 'microChild#/',
+  },
+  {
+    name: 'MicroApp微前端Vue2',
+    path: 'app-vue2/',
+  },
+  {
+    name: 'MicroApp微前端Vue3-vite',
+    path: 'app-vite#/',
   },
 ];
 

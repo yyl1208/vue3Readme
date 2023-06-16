@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
 import Layout from '@/layout/index.vue';
 
-const basicRoutes = [
+export const basicRoutes = [
   { path: '/', redirect: '/chileVite' },
   {
     path: '/chileVite',

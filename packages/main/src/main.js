@@ -5,7 +5,6 @@ import App from './App.vue';
 import { setupRouter } from '@/router';
 import { setupStore } from '@/store';
 import { setupGlobDirectives } from '@/directives';
-import '@/plugins/micro';
 
 import 'uno.css';
 
@@ -18,6 +17,44 @@ import '@arco-design/web-vue/dist/arco.css';
 import { Message } from '@arco-design/web-vue';
 
 import '@arco-design/web-vue/es/message/style/css.js'; //vite只能用 ant-design-vue/es 而非 ant-design-vue/lib
+
+import microApp from '@micro-zoe/micro-app';
+
+microApp.start({
+  plugins: {
+    modules: {
+      'appname-vite': [
+        {
+          loader(code) {
+            if (process.env.NODE_ENV === 'development') {
+              // 这里 /basename/ 需要和子应用vite.config.js中base的配置保持一致
+              code = code.replace(/(from|import)(\s*['"])(\/child\/vite\/)/g, (all) => {
+                return all.replace('/child/vite/', 'http://localhost:4007/child/vite/');
+              });
+            }
+
+            return code;
+          },
+        },
+      ],
+
+      'microChild': [
+        {
+          loader(code) {
+            if (process.env.NODE_ENV === 'development') {
+              // 这里 /basename/ 需要和子应用vite.config.js中base的配置保持一致
+              code = code.replace(/(from|import)(\s*['"])(\/microChild\/)/g, (all) => {
+                return all.replace('/microChild/', 'http://localhost:6001/microChild/');
+              });
+            }
+
+            return code;
+          },
+        },
+      ],
+    },
+  },
+});
 
 async function bootstrap() {
   const app = createApp(App);
